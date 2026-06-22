@@ -53,7 +53,7 @@ test('Go to Forgot Password page after entering login link', async ({ page }: { 
 })
 
 /*
-test('Submit button is selected with empty email field', async ({ page }: { page: Page }) => {
+test('Submit button is selected with email field', async ({ page }: { page: Page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.goto();
@@ -63,3 +63,23 @@ test('Submit button is selected with empty email field', async ({ page }: { page
     expect(loginPage.page.getByText('No account found with that email'));
 })
 */
+
+test('Attempt to submit with empty field', async ({ page }: { page: Page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.goto();
+    await loginPage.goToForgotPasswordField();
+    await loginPage.forgotPasswordSubmitButton.click();
+
+    expect(loginPage.page.getByText('No account found with that email'));
+})
+
+test('Cancel link works on forgot password page', async ({ page }: { page: Page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.goto();
+    await loginPage.goToForgotPasswordField();
+    await loginPage.forgotPasswordCancelLink.click();
+
+    expect(loginPage.page.getByText('Customer Login'))
+})

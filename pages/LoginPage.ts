@@ -10,6 +10,7 @@ export class LoginPage {
     readonly forgotPasswordLink: Locator;
     readonly forgotPasswordSubmitButton: Locator;
     readonly forgotPasswordEmailInput: Locator;
+    readonly forgotPasswordCancelLink: Locator;
 
 
     constructor(page: Page) {
@@ -22,6 +23,7 @@ export class LoginPage {
         this.forgotPasswordLink = page.getByRole('link', { name: 'Forgot your password?' });
         this.forgotPasswordSubmitButton = page.locator('#recover-email');
         this.forgotPasswordEmailInput = page.locator('input[type="email"]');
+        this.forgotPasswordCancelLink = page.getByRole('link', { name: 'Cancel' });
     }
 
     // Goes directly to the main site
