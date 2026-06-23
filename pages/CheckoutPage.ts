@@ -8,21 +8,27 @@ export class CheckoutPage {
     readonly cartButton: Locator;
     readonly checkoutButton: Locator;
     readonly removeButton: Locator;
+    readonly greyJacket: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.cartButton = page.getByText('My Cart');
-        this.checkoutButton = page.getByText('Check Out');
+        this.cartButton = page.getByRole('link', { name: 'My Cart '});
+        this.checkoutButton = page.getByRole('link', { name: 'Check Out'});
         this.removeButton = page.getByText('Remove');
+        this.greyJacket = page.locator('#product-1');
     }
 
-    async goto() {
+    async gotoMain() {
         await this.page.goto('https://sauce-demo.myshopify.com/');
     }
 
+    async gotoCart() {
+        await this.page.goto('https://sauce-demo.myshopify.com/cart');
+    }
+
     async addGreyJacketToCard() {
-        await this.page.getByText('Grey Jacket').click();
-        await this.page.getByRole('button', { name: 'Add to Cart' }).click();
+        await this.greyJacket.click();
+        await this.page.locator('#add').click();
     }
 
     // TODO: Add checkout process method
