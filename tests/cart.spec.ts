@@ -53,8 +53,6 @@ test('Cart is cleared when remove link is clicked', async ({ page }: { page: Pag
 })
 */
 
-
-
 test('Checkout button with item in cart leads to checkout page', async ({ page }: { page: Page }) => {
     const mainPage = new CheckoutPage(page);
 
